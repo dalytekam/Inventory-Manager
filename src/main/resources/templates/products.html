@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Inventory</title>
+    <link rel="stylesheet" href="bootstrap.min.css"/>
+
+
+</head>
+<body>
+
+<header>
+    <h1 class="text-center">Product Application</h1>
+</header>
+<div layout:fragment="content">
+<div class="container mb-3" >
+    <form th:action="@{index}" method="get">
+    <label>Keyword</label>
+    <input type="text" name="keyword" th:value="${keyword}"/>
+    <button class="btn btn-outline-success">Search</button>
+    </form>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr class="primary">
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>ACTIONS</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="p:${allTheProducts}">
+            <td th:text="${p.getId()}"></td>
+            <td th:text="${p.getName()}"></td>
+            <td th:text="${p.getPrice()}"></td>
+            <td th:text="${p.getQuantity()}"></td>
+            <td><a onclick="return confirm('Are you sure to delete the Product?')"  th:href="@{delete(id=${p.getId()},page=${currentPage},size=${size},kw=${keyword})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <ul class="nav nav-pills nav-fill">
+            <li th:classappend="(${currentPage}==${status.index})? 'active':''" class="nav-item"  th:each="p,status: ${pages}">
+                <a th:href="@{index(page=${status.index},size=${size},keyword=${keyword})}" th:text="${status.index}"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+</body>
+</html>

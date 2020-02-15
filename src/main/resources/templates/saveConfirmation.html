@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Iventory</title>
+    <link rel="stylesheet" href="bootstrap.min.css"/>
+
+
+</head>
+<body>
+
+<header>
+    <h1 class="text-center">Product Application</h1>
+</header>
+<div layout:fragment="content">
+<div class="container mb-3">
+    <div class="col-md-6 col-sm-12 m-auto">
+        <div class="form-group">
+   <h2 class="text-success">Product successfully saved !</h2>
+        </div>
+        <div class="col-md-6">
+        <ul class="list-group">
+
+            <li class="list-group-item" th:text="'ID: '+${savedProduct.getId()}"></li>
+
+            <li class="list-group-item" th:text="'Name: '+${savedProduct.getName()}"></li>
+
+
+           <li class="list-group-item" th:text="'Price: $'+${#numbers.formatDecimal(savedProduct.getPrice(),0, 'COMMA', 2, 'POINT')}"></li>
+
+
+            <li class="list-group-item"  th:text="' Quantity :'+${savedProduct.getQuantity()}"></li>
+        </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
