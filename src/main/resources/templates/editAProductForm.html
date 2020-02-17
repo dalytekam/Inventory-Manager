@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+     >
 <head>
     <meta charset="UTF-8"/>
-    <title>Inventory</title>
+    <title>Iventory</title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
@@ -31,8 +32,7 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" th:href="@{addProduct}">Add a Product <span
                             class="sr-only">(current)</span></a>
-                    <span class="nav-item nav-link"  th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
-                    <a class="nav-item nav-link" th:href="@{/logout}" th:inline="text">Logout</a>
+                    <a class="nav-item nav-link" href="#">User</a>
 
                 </div>
             </div>
@@ -40,44 +40,43 @@
     </div>
 </header>
 
-<div class="container mb-3" >
-    <form th:action="@{index}" method="get">
-    <label>Keyword</label>
-    <input type="text" name="keyword" th:value="${keyword}"/>
-    <button class="btn btn-outline-success">Search</button>
-    </form>
-</div>
-<div class="container">
-    <table class="table table-striped">
-        <thead>
-        <tr class="primary">
-            <th>ID</th>
-            <th>NAME</th>
-            <th>PRICE</th>
-            <th>QUANTITY</th>
-            <th colspan="2">ACTIONS</th>
-        </tr>
-        </thead>
+<div class="container mb-3">
+    <div class="col-md-6 col-sm-12 m-auto">
+    <form th:action="@{save}" method="post">
+        <div class="form-group">
 
-        <tbody>
-        <tr th:each="p:${allTheProducts}">
-            <td th:text="${p.getId()}"></td>
-            <td th:text="${p.getName()}"></td>
-            <td th:text="${p.getPrice()}"></td>
-            <td th:text="${p.getQuantity()}"></td>
-            <td><a onclick="return confirm('Are you sure to delete the Product?')"  th:href="@{delete(id=${p.getId()},page=${currentPage},size=${size},kw=${keyword})}">Delete</a></td>
-            <td><a th:href="@{edit(id=${p.getId()})}">Edit</a></td>
-        </tr>
-        </tbody>
-    </table>
-    <div>
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item"  th:each="p,status: ${pages}">
-                <a th:href="@{index(page=${status.index},size=${size},keyword=${keyword})}" th:text="${status.index}"></a>
-            </li>
-        </ul>
+            <label for="id">ID</label>
+
+            <input  type="text" class="form-control" id="id" name="id" th:value="${product.getId()}"/>
+            <span class="text-danger mt-1" th:errors="${product.id}"></span>
+        </div>
+        <div class="form-group">
+
+            <label for="nm">Name</label>
+
+            <input type="text" class="form-control" id="nm" name="name" th:value="${product.getName()}"/>
+            <span class="text-danger mt-1" th:errors="${product.name}"></span>
+        </div>
+        <div class="form-group">
+
+            <label for="prce">Price</label>
+
+            <input type="text" class="form-control" id="prce" name = "price" th:value="${product.getPrice()}"/>
+            <span class="text-danger mt-1" th:errors="${product.price}"></span>
+        </div>
+        <div class="form-group">
+
+            <label for="qty">Quantity</label>
+
+            <input type="text" class="form-control" id="qty" name="quantity" th:value="${product.getQuantity()}"/>
+            <span class="text-danger mb-1" th:errors="${product.quantity}"></span>
+        </div>
+        <button class="btn btn-outline-success">Save</button>
+    </form>
     </div>
 </div>
 
+
 </body>
+
 </html>

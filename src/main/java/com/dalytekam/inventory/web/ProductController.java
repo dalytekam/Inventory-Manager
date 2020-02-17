@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 
 @Controller
@@ -25,7 +26,7 @@ public class ProductController {
 @RequestMapping("/index")
     public String index(Model model,
                         @RequestParam(defaultValue = "0") int page,
-                        @RequestParam(defaultValue = "10")int size,
+                        @RequestParam(defaultValue = "5")int size,
                         @RequestParam(name ="keyword",defaultValue = "")String kw){
     Page<Product> productsPage = productRepository.search("%"+kw+"%",PageRequest.of(page, size, Sort.unsorted()));
     int[] pagesCount = new int[productsPage.getTotalPages()];
@@ -46,6 +47,14 @@ public class ProductController {
     model.addAttribute("product",new Product());
     return "addAProductForm";
     }
+    @RequestMapping(value = "/edit",method = RequestMethod.GET)
+    public String edit(Model model,Long id){
+    Product pr = productRepository.findById(id).orElse(null);
+        model.addAttribute("product",pr);
+        return "editAProductForm";
+    }
+
+
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(Model model, @Valid Product product, BindingResult bindingResult){
     if(bindingResult.hasErrors()){
@@ -54,5 +63,10 @@ public class ProductController {
     model.addAttribute("savedProduct",product);
         productRepository.save(product);
         return "saveConfirmation";
+    }
+    @RequestMapping(value = "/")
+    public String home()
+    {
+        return "redirect:/index";
     }
 }

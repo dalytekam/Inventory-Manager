@@ -1,42 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      >
 <head>
     <meta charset="UTF-8"/>
     <title>Iventory</title>
-    <link rel="stylesheet" href="bootstrap.min.css"/>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
 
 </head>
 <body>
 
 <header>
-    <h1 class="text-center">Product Application</h1>
+    <div class="container mb-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" th:href="@{index}">Inventory Manager</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" th:href="@{addProduct}">Add a Product <span
+                            class="sr-only">(current)</span></a>
+                    <span class="nav-item nav-link"  th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+                    <a class="nav-item nav-link" th:href="@{/logout}" th:inline="text">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </div>
 </header>
-<div layout:fragment="content">
+
 <div class="container mb-3">
-    <div class="col-md-6 col-sm-12 m-auto">
-        <div class="form-group">
-   <h2 class="text-success">Product successfully saved !</h2>
+
+        <div class="m-auto form-group col-md-6 col-sm-12 alert alert-success mb-3">
+   <p class="mb-3 text-success h3 text-center">Product successfully saved !</p>
         </div>
-        <div class="col-md-6">
-        <ul class="list-group">
+        <div class="m-auto form-group col-sm-12 col-md-6 shadow-sm p-3 mt-5 bg-white rounded">
 
-            <li class="list-group-item" th:text="'ID: '+${savedProduct.getId()}"></li>
+            <div class="col-md-6 col-sm-12 mb-3">
+            <p class="h3 font-weight-light" th:text="'ID: '+${savedProduct.getId()}"></p>
+            </div>
+                <div class="col-md-6 col-sm-12 mb-3">
+            <p class="h3 font-weight-light" th:text="'Name: '+${savedProduct.getName()}"></p>
+                </div>
+                    <div class="col-md-6 col-sm-12 mb-3">
+           <p class="h3 font-weight-light" th:text="'Price: $'+${#numbers.formatDecimal(savedProduct.getPrice(),0, 'COMMA', 2, 'POINT')}"></p>
+                    </div>
+                        <div class="col-md-6 col-sm-12 mb-3">
+            <p class="h3 font-weight-light"  th:text="' Quantity :'+${savedProduct.getQuantity()}"></p>
+                        </div>
 
-            <li class="list-group-item" th:text="'Name: '+${savedProduct.getName()}"></li>
-
-
-           <li class="list-group-item" th:text="'Price: $'+${#numbers.formatDecimal(savedProduct.getPrice(),0, 'COMMA', 2, 'POINT')}"></li>
-
-
-            <li class="list-group-item"  th:text="' Quantity :'+${savedProduct.getQuantity()}"></li>
-        </ul>
-        </div>
     </div>
 </div>
 
-</div>
+
 
 </body>
 </html>
