@@ -69,4 +69,10 @@ public class ProductController {
     {
         return "redirect:/index";
     }
+
+    @RequestMapping(value = "/403")
+    public String accessDenied()
+    {
+        return "denied";
+    }
 }

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en"
-      >
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Iventory</title>
+    <title>Denied</title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
@@ -15,10 +14,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-
 </head>
 <body>
-
 <header>
     <div class="container mb-4">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,31 +35,10 @@
         </nav>
     </div>
 </header>
+<div  class="mt-5 text-center col-md-6 mr-auto ml-auto alert alert-danger" role="alert">
+    <h4 class="alert-heading">OOPS!</h4>
+    <p>You don't have the right to perform this Action !</p>
 
-<div class="container mb-3">
-
-        <div class="m-auto form-group col-md-6 col-sm-12 alert alert-success mb-3">
-   <p class="mb-3 text-success h3 text-center">Product successfully saved !</p>
-        </div>
-        <div class="m-auto form-group col-sm-12 col-md-6 shadow-sm p-3 mt-5 bg-white rounded">
-
-            <div class="col-md-6 col-sm-12 mb-3">
-            <p class="h3 font-weight-light" th:text="'ID: '+${savedProduct.getId()}"></p>
-            </div>
-                <div class="col-md-6 col-sm-12 mb-3">
-            <p class="h3 font-weight-light" th:text="'Name: '+${savedProduct.getName()}"></p>
-                </div>
-                    <div class="col-md-6 col-sm-12 mb-3">
-           <p class="h3 font-weight-light" th:text="'Price: $'+${#numbers.formatDecimal(savedProduct.getPrice(),0, 'COMMA', 2, 'POINT')}"></p>
-                    </div>
-                        <div class="col-md-6 col-sm-12 mb-3">
-            <p class="h3 font-weight-light"  th:text="' Quantity :'+${savedProduct.getQuantity()}"></p>
-                        </div>
-
-    </div>
 </div>
-
-
-
 </body>
 </html>
