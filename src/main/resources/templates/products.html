@@ -41,11 +41,11 @@
     </div>
 </header>
 
-<div class="container mb-3" >
+<div class="container mb-3 input-group-lg" >
     <form th:action="@{index}" method="get">
-    <label>Keyword</label>
-    <input type="text" name="keyword" th:value="${keyword}"/>
-    <button class="btn btn-outline-success">Search</button>
+    <label class="h3">Keyword:</label>
+    <input class="input-lg" type="text" name="keyword" th:value="${keyword}"/>
+    <button class="btn btn-lg btn-outline-success">Search</button>
     </form>
 </div>
 <div class="container">
@@ -66,15 +66,15 @@
             <td th:text="${p.getName()}"></td>
             <td th:text="${p.getPrice()}"></td>
             <td th:text="${p.getQuantity()}"></td>
-            <td><a onclick="return confirm('Are you sure to delete the Product?')"  th:href="@{delete(id=${p.getId()},page=${currentPage},size=${size},kw=${keyword})}">Delete</a></td>
-            <td><a th:href="@{edit(id=${p.getId()})}">Edit</a></td>
+            <td><a class ="text-decoration-none btn  btn-danger" onclick="return confirm('Are you sure to delete the Product?')"  th:href="@{delete(id=${p.getId()},page=${currentPage},size=${size},kw=${keyword})}">Delete</a></td>
+            <td><a class ="text-decoration-none btn  btn-success pl-4 pr-4" th:href="@{edit(id=${p.getId()})}">Edit</a></td>
         </tr>
         </tbody>
     </table>
     <div>
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item"  th:each="p,status: ${pages}">
-                <a th:href="@{index(page=${status.index},size=${size},keyword=${keyword})}" th:text="${status.index}"></a>
+        <ul class="pagination pagination-lg ">
+            <li th:classappend="${currentPage==status.index}?'active'" class="page-item"  th:each="p,status: ${pages}">
+                <a class="page-link" th:href="@{index(page=${status.index},size=${size},keyword=${keyword})}" th:text="${status.index}"></a>
             </li>
         </ul>
     </div>
