@@ -10,6 +10,10 @@ can only see the Products and perform some search.
 
  The App is a spring application and it is 
  
+ To try it, you  can use:
+  - login: **"daly"**  password: **"tekam"**  for an **User role***
+  - login: **"admin"**  password: **"tekam"**  for an **Admin role***
+ 
  Technologies used: **JAVA**, **JPA**, **Hibernate**, **MVC**, **Bootstrap**, **JavaScript**, **MySQL**
 
 # Others Projects
