@@ -1,5 +1,6 @@
 # Inventory-Manager
 
+Try the App here [Inventory Manager](https://inventory-app-manager.herokuapp.com/)
 This application is intended to help small businesses to track ther inventory. Basically the user can add new items, search through them 
 
 modify them and delete them.
@@ -8,7 +9,7 @@ It is permission based. Hence only a user with the role ADMIN can add,edit, or d
 
 can only see the Products and perform some search.
 
- The App is a spring application and it is 
+ 
  
  To try it, you  can use:
   - login: **"daly"**  password: **"tekam"**  for an **User role***
